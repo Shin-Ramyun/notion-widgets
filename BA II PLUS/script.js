@@ -1,29 +1,47 @@
-let inputs = {};
-
-function input(value) {
-  const screen = document.getElementById("screen");
-  if (!inputs[value]) {
-    inputs[value] = prompt(`Enter ${value}:`);
-  }
-  screen.textContent = JSON.stringify(inputs);
+.inputs {
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: space-around;
 }
 
-function calculate() {
-  const screen = document.getElementById("screen");
-  const PV = parseFloat(inputs['PV']);
-  const FV = parseFloat(inputs['FV']);
-  const N = parseFloat(inputs['N']);
-  const IY = parseFloat(inputs['I/Y']) / 100;
-
-  if (PV && FV && N && IY) {
-    const calculation = PV * Math.pow(1 + IY, N); // Example formula for Future Value
-    screen.textContent = `Result: ${calculation.toFixed(2)}`;
-  } else {
-    screen.textContent = "Incomplete Inputs!";
-  }
+.inputs label {
+  font-size: 1em;
+  margin: 5px;
 }
 
-function clearScreen() {
-  inputs = {};
-  document.getElementById("screen").textContent = "";
+.inputs input {
+  width: 80px;
+  padding: 5px;
+  font-size: 1em;
+  text-align: center;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 1em;
+}
+
+.keypad-button {
+  background-color: #f0f0f0;
+  border: 2px solid #444;
+  padding: 15px;
+  font-size: 1.2em;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.keypad-button:hover {
+  background-color: #ddd;
+}
+
+.screen {
+  border: 2px solid #222;
+  background-color: #eaeaea;
+  height: 50px;
+  margin-bottom: 1em;
+  text-align: right;
+  padding: 10px;
+  font-size: 1.2em;
 }
