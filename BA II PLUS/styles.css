@@ -1,47 +1,99 @@
-.inputs {
-  margin-bottom: 1em;
+/* Overall page styling for dark mode */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Mono', monospace;
+  background-color: #121212;
+  color: #e0e0e0;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.inputs label {
-  font-size: 1em;
-  margin: 5px;
+/* Main calculator container */
+.calculator-container {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 20px;
+  width: 350px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-.inputs input {
-  width: 80px;
-  padding: 5px;
-  font-size: 1em;
+/* Title styling */
+.title {
   text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5em;
 }
 
-.keypad {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 1em;
+/* Mode selection controls */
+.mode-selection {
+  text-align: center;
+  margin-bottom: 20px;
 }
-
-.keypad-button {
-  background-color: #f0f0f0;
-  border: 2px solid #444;
-  padding: 15px;
-  font-size: 1.2em;
-  cursor: pointer;
+.mode-selection label {
+  margin-right: 10px;
+}
+.mode-selection select {
+  background-color: #333;
+  color: #e0e0e0;
+  border: 1px solid #444;
+  padding: 5px;
   border-radius: 5px;
 }
 
-.keypad-button:hover {
-  background-color: #ddd;
+/* Calculation area container */
+#calcArea {
+  background-color: #262626;
+  padding: 15px;
+  border-radius: 5px;
 }
 
-.screen {
-  border: 2px solid #222;
-  background-color: #eaeaea;
-  height: 50px;
-  margin-bottom: 1em;
-  text-align: right;
-  padding: 10px;
+/* Input field styling */
+input[type="number"] {
+  background-color: #333;
+  color: #e0e0e0;
+  border: 1px solid #444;
+  border-radius: 3px;
+  padding: 5px;
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+/* Label styling for the form inputs */
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Button styling to mimic calculator actions */
+button {
+  background-color: #444;
+  color: #e0e0e0;
+  border: 1px solid #555;
+  border-radius: 5px;
+  padding: 8px 10px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+button:hover {
+  background-color: #555;
+}
+
+/* Result display styling */
+#result {
+  margin-top: 15px;
   font-size: 1.2em;
+  text-align: center;
+}
+
+/* Optional: Group inputs for better spacing */
+.input-group {
+  margin-bottom: 10px;
+}
+.button-group {
+  text-align: center;
 }
