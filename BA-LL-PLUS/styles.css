@@ -1,37 +1,30 @@
-/* Root page styling for dark mode */
-body {
-  background-color: #121212;
-  font-family: 'Roboto Mono', monospace;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+/* Root page styling for transparency */
+html, body {
   margin: 0;
+  padding: 0;
+  background: transparent; /* Ensure no background color is enforced */
 }
 
-/* Calculator container: a compact, boxy look */
+/* Calculator container: a fully transparent look */
 .calc-container {
-  background-color: #1e1e1e;
-  border: 1px solid #333;
-  border-radius: 10px;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
   width: 250px;
-  padding: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 0;
 }
 
-/* Digital display styling (mimicking a bright LED display) */
+/* Digital display: ensure no background and keep text clear */
 .calc-display {
-  background-color: #333;
-  color: #0f0; /* A green reminiscent of old LCDs */
+  background: transparent; /* Let Notion's background show through */
+  color: #0f0; /* Retro green LCD color */
   text-align: right;
   font-size: 1.5em;
   padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 8px;
   min-height: 40px;
 }
 
-/* Assigned parameters preview */
+/* Assigned parameter previews */
 .assigned-values {
   font-size: 0.75em;
   color: #bbb;
@@ -44,21 +37,21 @@ body {
   text-align: center;
 }
 
-/* Keypad grid layout */
+/* Keypad layout */
 .calc-buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 5px;
 }
 
-/* Basic button styling */
+/* Button styling */
 .btn {
   background-color: #444;
   border: none;
-  border-radius: 5px;
   color: #e0e0e0;
   font-size: 1em;
   padding: 10px;
+  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s;
 }
@@ -82,7 +75,7 @@ body {
   background-color: #700000;
 }
 
-/* Placeholder for grid balance */
+/* Empty button space (for layout balance) */
 .btn-placeholder {
   visibility: hidden;
 }
