@@ -1,27 +1,39 @@
-body {
-  font-family: 'Courier New', Courier, monospace;
-  background-color: #fdfdfd;
-  color: #333;
+.inputs {
+  margin-bottom: 1em;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
+  justify-content: space-around;
 }
 
-.calculator-container {
-  background-color: #fff;
-  padding: 20px;
-  border: 3px solid #444;
-  border-radius: 8px;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
-  width: 300px;
+.inputs label {
+  font-size: 1em;
+  margin: 5px;
+}
+
+.inputs input {
+  width: 80px;
+  padding: 5px;
+  font-size: 1em;
   text-align: center;
 }
 
-.calculator-title {
-  font-size: 1.4em;
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
   margin-bottom: 1em;
+}
+
+.keypad-button {
+  background-color: #f0f0f0;
+  border: 2px solid #444;
+  padding: 15px;
+  font-size: 1.2em;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.keypad-button:hover {
+  background-color: #ddd;
 }
 
 .screen {
@@ -30,25 +42,6 @@ body {
   height: 50px;
   margin-bottom: 1em;
   text-align: right;
-  padding: 5px;
-  font-size: 1.2em;
-}
-
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
-.calc-button {
-  background-color: #f0f0f0;
-  border: 2px solid #444;
   padding: 10px;
-  font-size: 1em;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.calc-button:hover {
-  background-color: #ddd;
+  font-size: 1.2em;
 }
