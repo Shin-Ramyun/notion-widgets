@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financial Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="calculator-container">
+    <h2 class="calculator-title">BA II Plus</h2>
+    <div class="screen" id="screen">
+      <!-- Display calculations dynamically -->
+    </div>
+    <div class="buttons">
+      <button class="calc-button" onclick="input('PV')">PV</button>
+      <button class="calc-button" onclick="input('FV')">FV</button>
+      <button class="calc-button" onclick="input('N')">N</button>
+      <button class="calc-button" onclick="input('I/Y')">I/Y</button>
+      <button class="calc-button" onclick="calculate()">Calculate</button>
+      <button class="calc-button" onclick="clearScreen()">Clear</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
