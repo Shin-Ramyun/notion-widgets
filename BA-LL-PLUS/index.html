@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BA II Plus Simulator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="calc-container">
+    <!-- Digital Display -->
+    <div id="calc-display" class="calc-display">0</div>
+    <!-- Assigned Values Review -->
+    <div class="assigned-values" id="assigned-values">
+      <span>PV: <span id="val-pv">-</span></span>
+      <span>PMT: <span id="val-pmt">-</span></span>
+      <span>I/Y: <span id="val-iy">-</span></span>
+      <span>N: <span id="val-n">-</span></span>
+    </div>
+    <!-- Keypad Buttons -->
+    <div class="calc-buttons">
+      <!-- Row 1: Function Keys -->
+      <button class="btn func" data-func="PV">PV</button>
+      <button class="btn func" data-func="PMT">PMT</button>
+      <button class="btn func" data-func="IY">I/Y</button>
+      <button class="btn func" data-func="N">N</button>
+
+      <!-- Row 2: 7, 8, 9, CLR -->
+      <button class="btn num" data-num="7">7</button>
+      <button class="btn num" data-num="8">8</button>
+      <button class="btn num" data-num="9">9</button>
+      <button class="btn op" data-op="CLR">CLR</button>
+
+      <!-- Row 3: 4, 5, 6, CPT -->
+      <button class="btn num" data-num="4">4</button>
+      <button class="btn num" data-num="5">5</button>
+      <button class="btn num" data-num="6">6</button>
+      <button class="btn op" data-op="CPT">CPT</button>
+
+      <!-- Row 4: 1, 2, 3, DEL -->
+      <button class="btn num" data-num="1">1</button>
+      <button class="btn num" data-num="2">2</button>
+      <button class="btn num" data-num="3">3</button>
+      <button class="btn op" data-op="DEL">DEL</button>
+
+      <!-- Row 5: 0, +/–, . -->
+      <button class="btn num" data-num="0">0</button>
+      <button class="btn op" data-op="+/-">+/-</button>
+      <button class="btn num" data-num=".">.</button>
+      <!-- You may leave the fourth cell in this row blank for balance -->
+      <div class="btn-placeholder"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
