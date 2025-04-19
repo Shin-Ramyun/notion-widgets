@@ -1,47 +1,42 @@
-.inputs {
-  margin-bottom: 1em;
-  display: flex;
-  justify-content: space-around;
+// Store the focused input field
+let activeInput = null;
+
+// Function to set the active input field when clicked
+document.querySelectorAll(".inputs input").forEach(input => {
+  input.addEventListener("focus", () => {
+    activeInput = input;
+  });
+});
+
+// Function to append values via the keypad
+function appendValue(value) {
+  if (activeInput) {
+    activeInput.value += value;
+  }
 }
 
-.inputs label {
-  font-size: 1em;
-  margin: 5px;
+// Calculation Function
+function calculate() {
+  const PV = parseFloat(document.getElementById("PV").value);
+  const FV = parseFloat(document.getElementById("FV").value);
+  const N = parseFloat(document.getElementById("N").value);
+  const IY = parseFloat(document.getElementById("IY").value) / 100;
+
+  const screen = document.getElementById("screen");
+
+  if (PV && FV && N && IY) {
+    const calculation = PV * Math.pow(1 + IY, N); // Example calculation: FV
+    screen.textContent = `Result: ${calculation.toFixed(2)}`;
+  } else {
+    screen.textContent = "Please enter all values!";
+  }
 }
 
-.inputs input {
-  width: 80px;
-  padding: 5px;
-  font-size: 1em;
-  text-align: center;
-}
-
-.keypad {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-bottom: 1em;
-}
-
-.keypad-button {
-  background-color: #f0f0f0;
-  border: 2px solid #444;
-  padding: 15px;
-  font-size: 1.2em;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.keypad-button:hover {
-  background-color: #ddd;
-}
-
-.screen {
-  border: 2px solid #222;
-  background-color: #eaeaea;
-  height: 50px;
-  margin-bottom: 1em;
-  text-align: right;
-  padding: 10px;
-  font-size: 1.2em;
+// Clear Function
+function clearScreen() {
+  document.getElementById("PV").value = "";
+  document.getElementById("FV").value = "";
+  document.getElementById("N").value = "";
+  document.getElementById("IY").value = "";
+  document.getElementById("screen").textContent = "Result will appear here";
 }
