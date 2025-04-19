@@ -1,0 +1,88 @@
+/* Root page styling for dark mode */
+body {
+  background-color: #121212;
+  font-family: 'Roboto Mono', monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Calculator container: a compact, boxy look */
+.calc-container {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 10px;
+  width: 250px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Digital display styling (mimicking a bright LED display) */
+.calc-display {
+  background-color: #333;
+  color: #0f0; /* A green reminiscent of old LCDs */
+  text-align: right;
+  font-size: 1.5em;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  min-height: 40px;
+}
+
+/* Assigned parameters preview */
+.assigned-values {
+  font-size: 0.75em;
+  color: #bbb;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+.assigned-values span {
+  flex: 1;
+  text-align: center;
+}
+
+/* Keypad grid layout */
+.calc-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+
+/* Basic button styling */
+.btn {
+  background-color: #444;
+  border: none;
+  border-radius: 5px;
+  color: #e0e0e0;
+  font-size: 1em;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.btn:hover {
+  background-color: #555;
+}
+
+/* Function key styling */
+.btn.func {
+  background-color: #005f5f;
+}
+.btn.func:hover {
+  background-color: #007070;
+}
+
+/* Operation button styling */
+.btn.op {
+  background-color: #5f0000;
+}
+.btn.op:hover {
+  background-color: #700000;
+}
+
+/* Placeholder for grid balance */
+.btn-placeholder {
+  visibility: hidden;
+}
