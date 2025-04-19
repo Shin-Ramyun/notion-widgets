@@ -1,85 +1,99 @@
-// When the page loads, initialize the default mode.
-window.onload = switchMode;
+// Ensure the script runs only after the DOM is loaded.
+document.addEventListener("DOMContentLoaded", () => {
+  // Global state variables.
+  let currentInput = "";
+  let activeParameter = null;
+  const parameters = {
+    PV: null,
+    PMT: null,
+    IY: null,
+    N: null
+  };
 
-function switchMode() {
-  let mode = document.getElementById("modeSelect").value;
-  let calcArea = document.getElementById("calcArea");
-  
-  // Clear current content:
-  calcArea.innerHTML = '';
+  // Cache DOM elements.
+  const display = document.getElementById("calc-display");
 
-  if (mode === "TVM") {
-    // Inject TVM module HTML:
-    calcArea.innerHTML = `
-      <h3>TVM Calculation</h3>
-      <form id="tvmForm">
-        <div class="input-group">
-          <label for="pv">PV:</label>
-          <input type="number" id="pv" value="0" step="any">
-        </div>
-        <div class="input-group">
-          <label for="pmt">PMT:</label>
-          <input type="number" id="pmt" value="0" step="any">
-        </div>
-        <div class="input-group">
-          <label for="iy">I/Y (%):</label>
-          <input type="number" id="iy" value="0" step="any">
-        </div>
-        <div class="input-group">
-          <label for="n">N (Periods):</label>
-          <input type="number" id="n" value="0">
-        </div>
-        <div class="button-group">
-          <button type="button" onclick="computeTVM()">CPT</button>
-          <button type="button" onclick="clearTVM()">CLR</button>
-        </div>
-      </form>
-      <div id="result">Result will be displayed here</div>
-    `;
-  } else if (mode === "CF") {
-    calcArea.innerHTML = `<h3>Cash Flow Module</h3>
-      <p>Cash Flow functionality to be added.</p>`;
-  } else if (mode === "BOND") {
-    calcArea.innerHTML = `<h3>Bond Module</h3>
-      <p>Bond pricing functionality to be added.</p>`;
-  } else if (mode === "DEP") {
-    calcArea.innerHTML = `<h3>Depreciation Module</h3>
-      <p>Depreciation functionality to be added.</p>`;
+  // Update the assigned values preview area.
+  function updateAssignedValues() {
+    document.getElementById("val-pv").textContent = parameters.PV !== null ? parameters.PV : "-";
+    document.getElementById("val-pmt").textContent = parameters.PMT !== null ? parameters.PMT : "-";
+    document.getElementById("val-iy").textContent = parameters.IY !== null ? parameters.IY : "-";
+    document.getElementById("val-n").textContent = parameters.N !== null ? parameters.N : "-";
   }
-}
 
-function computeTVM() {
-  // Retrieve and convert input values for TVM calculation:
-  let pv = parseFloat(document.getElementById("pv").value);
-  let pmt = parseFloat(document.getElementById("pmt").value);
-  let iy = parseFloat(document.getElementById("iy").value) / 100;
-  let n = parseFloat(document.getElementById("n").value);
-  
-  let resultDiv = document.getElementById("result");
-  
-  // Basic validation:
-  if (isNaN(pv) || isNaN(pmt) || isNaN(iy) || isNaN(n)) {
-    resultDiv.textContent = "Invalid input!";
-    return;
+  // Update the display area.
+  function updateDisplay() {
+    display.textContent = currentInput || "0";
   }
-  
-  // Calculate Future Value (FV) using TVM formula:
-  // FV = PV * (1 + i)^n + PMT * [((1 + i)^n - 1) / i]
-  let fv;
-  if (iy === 0) {
-    fv = pv + pmt * n;
-  } else {
-    fv = pv * Math.pow(1 + iy, n) + pmt * ((Math.pow(1 + iy, n) - 1) / iy);
-  }
-  
-  resultDiv.textContent = `FV = ${fv.toFixed(2)}`;
-}
 
-function clearTVM() {
-  // Reset all TVM input fields and result display:
-  document.getElementById("pv").value = 0;
-  document.getElementById("pmt").value = 0;
-  document.getElementById("iy").value = 0;
-  document.getElementById("n").value  = 0;
-  document.getElementById("result").textContent = "Result will be displayed here";
-}
+  // Handle numeric button input.
+  document.querySelectorAll(".btn.num").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      const value = e.target.getAttribute("data-num");
+      // Append the digit or decimal point.
+      currentInput += value;
+      updateDisplay();
+    });
+  });
+
+  // Handle operation keys.
+  document.querySelectorAll(".btn.op").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      const op = e.target.getAttribute("data-op");
+      if (op === "CLR") {
+        // Clear current input.
+        currentInput = "";
+        updateDisplay();
+      } else if (op === "DEL") {
+        currentInput = currentInput.slice(0, -1);
+        updateDisplay();
+      } else if (op === "+/-") {
+        if (currentInput) {
+          if (currentInput.startsWith("-")) {
+            currentInput = currentInput.slice(1);
+          } else {
+            currentInput = "-" + currentInput;
+          }
+          updateDisplay();
+        }
+      } else if (op === "CPT") {
+        // Perform the TVM computation.
+        computeTVM();
+      }
+    });
+  });
+
+  // Handle function keys for storing a value as a parameter.
+  document.querySelectorAll(".btn.func").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      const func = e.target.getAttribute("data-func");
+      // If there’s no current input, assume zero.
+      if (currentInput === "") {
+        parameters[func] = 0;
+      } else {
+        parameters[func] = parseFloat(currentInput);
+      }
+      activeParameter = func;
+      currentInput = "";
+      updateDisplay();
+      updateAssignedValues();
+    });
+  });
+
+  // Compute Future Value (FV) based on TVM formula:
+  // FV = PV * (1 + i)^N + PMT * (( (1 + i)^N - 1 ) / i)
+  function computeTVM() {
+    let PV = parameters.PV !== null ? parameters.PV : 0;
+    let PMT = parameters.PMT !== null ? parameters.PMT : 0;
+    let IY = parameters.IY !== null ? parameters.IY / 100 : 0;
+    let N = parameters.N !== null ? parameters.N : 0;
+    
+    let FV;
+    if (IY === 0) {
+      FV = PV + PMT * N;
+    } else {
+      FV = PV * Math.pow(1 + IY, N) + PMT * ((Math.pow(1 + IY, N) - 1) / IY);
+    }
+    display.textContent = "FV = " + FV.toFixed(2);
+  }
+});
