@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #fdfdfd;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.widget-container {
+  text-align: center;
+  border: 2px solid #444;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.widget-title {
+  font-size: 1.5em;
+  margin-bottom: 1em;
+  font-weight: bold;
+}
+
+.quote-display {
+  font-size: 1.2em;
+  line-height: 1.6;
+}
