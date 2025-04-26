@@ -1,0 +1,129 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0; /* Light grey background for the page */
+    margin: 0;
+    font-family: Arial, sans-serif;
+    padding: 20px; /* Add some padding around the calculator */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+.calculator {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden; /* Ensures anything outside the border is clipped */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 280px; /* Adjust width as needed for Notion widget */
+    background-color: #333; /* Dark background for the calculator body */
+    padding: 10px;
+    display: flex; /* Use flexbox for display and buttons arrangement */
+    flex-direction: column; /* Stack display and buttons vertically */
+    gap: 10px; /* Space between display and buttons */
+}
+
+.display {
+    background-color: #222; /* Darker background for the display */
+    color: #0f0; /* Green text color */
+    font-size: 1.8em; /* Slightly smaller font */
+    text-align: right;
+    padding: 15px 10px;
+    border-radius: 4px;
+    overflow: hidden; /* Prevent text from overflowing */
+    white-space: nowrap; /* Keep text on a single line */
+    text-overflow: ellipsis; /* Add ellipsis if text overflows */
+    min-height: 1.5em; /* Ensure display has a minimum height */
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns, equal width */
+    gap: 8px; /* Space between buttons */
+
+    /* Define the grid layout using names */
+    grid-template-areas:
+        "btn-2nd btn-clrtvm btn-plusminus btn-divide"
+        "btn-n btn-iy btn-pv btn-multiply"
+        "btn-pmt btn-fv btn-cpt btn-minus"
+        "btn-7 btn-8 btn-9 btn-plus"
+        "btn-4 btn-5 btn-6 btn-enter"
+        "btn-1 btn-2 btn-3 btn-enter" /* 'btn-enter' spans down */
+        "btn-0 btn-0 btn-dot btn-equals"; /* 'btn-0' spans across, 'btn-equals' spans down */
+
+    /* Optional: Define row heights. `auto` works well here. */
+    grid-template-rows: repeat(7, auto);
+}
+
+button {
+    padding: 15px 10px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.1s ease; /* Smooth hover effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40px; /* Ensure minimum button height */
+    box-sizing: border-box; /* Include padding in button size */
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* Specific button styles based on type */
+.function-button {
+    background-color: #f0a000; /* Orange/Yellow for function buttons */
+    color: #fff;
+}
+
+.operation-button {
+    background-color: #666; /* Grey for operation buttons */
+    color: #fff;
+}
+
+.digit-button {
+    background-color: #999; /* Lighter grey for digit/number buttons */
+    color: #fff;
+}
+
+/* Assign grid-area to each button using its data-button attribute */
+button[data-button="2nd"] { grid-area: btn-2nd; }
+button[data-button="clrtvm"] { grid-area: btn-clrtvm; }
+button[data-button="plusminus"] { grid-area: btn-plusminus; }
+button[data-button="divide"] { grid-area: btn-divide; }
+
+button[data-button="n"] { grid-area: btn-n; }
+button[data-button="iy"] { grid-area: btn-iy; }
+button[data-button="pv"] { grid-area: btn-pv; }
+button[data-button="multiply"] { grid-area: btn-multiply; }
+
+button[data-button="pmt"] { grid-area: btn-pmt; }
+button[data-button="fv"] { grid-area: btn-fv; }
+button[data-button="cpt"] { grid-area: btn-cpt; }
+button[data-button="minus"] { grid-area: btn-minus; }
+
+button[data-button="7"] { grid-area: btn-7; }
+button[data-button="8"] { grid-area: btn-8; }
+button[data-button="9"] { grid-area: btn-9; }
+button[data-button="+"] { grid-area: btn-plus; }
+
+button[data-button="4"] { grid-area: btn-4; }
+button[data-button="5"] { grid-area: btn-5; }
+button[data-button="6"] { grid-area: btn-6; }
+button[data-button="enter"] { grid-area: btn-enter; } /* ENTER spans two rows as defined in grid-template-areas */
+
+button[data-button="1"] { grid-area: btn-1; }
+button[data-button="2"] { grid-area: btn-2; }
+button[data-button="3"] { grid-area: btn-3; }
+
+button[data-button="0"] { grid-area: btn-0; } /* 0 spans two columns as defined in grid-template-areas */
+button[data-button="dot"] { grid-area: btn-dot; }
+button[data-button="equals"] { grid-area: btn-equals; } /* Equals spans two rows as defined in grid-template-areas */
+
+/* Note: We added `.zero` class to the 0 button in HTML initially,
+   but with `grid-template-areas`, assigning the area to `btn-0`
+   is what makes it span. The `.zero` class isn't strictly needed for spanning
+   in this approach, but you can keep it for other styling if you like. */
